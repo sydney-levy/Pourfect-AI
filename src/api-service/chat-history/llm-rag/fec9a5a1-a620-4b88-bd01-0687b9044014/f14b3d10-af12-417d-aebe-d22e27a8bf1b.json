@@ -1,0 +1,18 @@
+{
+  "chat_id": "f14b3d10-af12-417d-aebe-d22e27a8bf1b",
+  "title": "Hi!...",
+  "dts": 1733354035,
+  "messages": [
+    {
+      "content": "Hi!",
+      "timestamp": "2024-12-04T23:13:55.129Z",
+      "message_id": "e9500df2-a384-48b8-8699-ba2bd0d73515",
+      "role": "user"
+    },
+    {
+      "message_id": "43e38102-3904-48ae-b73b-8b995e35aed0",
+      "role": "assistant",
+      "content": "Hello!  How can I assist you with your cocktail needs today?\n"
+    }
+  ]
+}

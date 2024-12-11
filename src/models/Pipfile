@@ -1,0 +1,31 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+flake8 = "*"
+
+[packages]
+scikit-learn = ">=1.0.0"
+numpy = "*"
+matplotlib = "*"
+pandas = "*"
+seaborn = "*"
+user-agent = "*"
+requests = "*"
+google-cloud-storage = "*"
+google-generativeai = "*"
+google-cloud-aiplatform = "*"
+langchain = "*"
+langchain-chroma = "*"
+langchain-openai = "*"
+llama-index = "*"
+chromadb = "*"
+langchain-community = "*"
+vertexai = "*"
+
+[requires]
+python_version = "3.12"

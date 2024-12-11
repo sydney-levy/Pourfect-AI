@@ -1,0 +1,18 @@
+{
+  "chat_id": "458328a8-86c1-444d-b7f7-98551516c4e7",
+  "title": "I have vodka, what can i make?...",
+  "dts": 1732528470,
+  "messages": [
+    {
+      "content": "I have vodka, what can i make?",
+      "timestamp": "2024-11-25T09:54:30.873Z",
+      "message_id": "e3d84f9c-7974-402d-9513-25153c637384",
+      "role": "user"
+    },
+    {
+      "message_id": "049962bd-417d-4e63-94b5-787e5e6467ce",
+      "role": "assistant",
+      "content": "Several delicious vodka cocktails can be crafted.  Here's a recipe for a refreshing Vodka Cranberry Spritzer:\n\n**Vodka Cranberry Spritzer**\n\n*   1.5 oz Vodka\n*   4 oz Cranberry Juice\n*   Top with Sparkling Water or Club Soda\n*   Cranberry and lime wedge for garnish\n\nInstructions:\n\n1.  Fill a highball glass with ice.\n2.  Add vodka and cranberry juice.\n3.  Top with sparkling water or club soda.\n4.  Garnish with a cranberry and lime wedge.\n\n\nEnjoy responsibly.\n"
+    }
+  ]
+}

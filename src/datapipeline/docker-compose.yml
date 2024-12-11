@@ -1,0 +1,30 @@
+networks:
+    default:
+        name: pourfect-app-network
+        external: true
+services:
+    pourfect-app-vector-db-cli:
+        image: pourfect-app-vector-db-cli
+        container_name: pourfect-app-vector-db-cli
+        volumes:
+            - ./secrets:/secrets
+            - ../datapipeline:/app
+        environment:
+            GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS
+            GCP_PROJECT: $GCP_PROJECT
+            CHROMADB_HOST: pourfect-app-vector-db
+            CHROMADB_PORT: 8000
+        depends_on:
+            - chromadb
+    chromadb:
+        image: chromadb/chroma:0.5.7
+        container_name: pourfect-app-vector-db
+        ports:
+            - 8000:8000
+        volumes:
+            - ./docker-volumes/chromadb:/chroma/chroma
+        environment:
+            - IS_PERSISTENT=TRUE
+            - ANONYMIZED_TELEMETRY=FALSE
+            - CHROMADB_HOST=pourfect-app-vector-db
+            - CHROMADB_PORT=8000

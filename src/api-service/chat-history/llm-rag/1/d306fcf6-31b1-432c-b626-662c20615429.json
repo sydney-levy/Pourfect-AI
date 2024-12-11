@@ -1,0 +1,18 @@
+{
+  "chat_id": "d306fcf6-31b1-432c-b626-662c20615429",
+  "title": "What are some cocktail recipes using rum?...",
+  "dts": 1733346668,
+  "messages": [
+    {
+      "content": "What are some cocktail recipes using rum?",
+      "timestamp": "2024-12-04T12:00:00Z",
+      "message_id": "8405da5c-02d2-4488-bcb2-ae715b9b9f09",
+      "role": "user"
+    },
+    {
+      "message_id": "fd0c5f25-c64b-4569-990d-f521cad0110b",
+      "role": "assistant",
+      "content": "Here are a few rum-based cocktail recipes:\n\n**Mojito:**\n\n*   2 oz light rum\n*   1 oz simple syrup\n*   Limes (cut into wedges)\n*   Mint sprigs\n*   Soda water\n\nMuddle mint and lime wedges in a shaker. Add rum, simple syrup, and ice. Shake, strain into a tall glass filled with ice, and top with soda water. Garnish with a mint sprig.\n\n\n**Daiquiri:**\n\n*   2 oz rum\n*   ¾ oz lime juice\n*   ½ oz simple syrup\n\nCombine all ingredients in a shaker with ice. Shake and strain into a cocktail glass.\n\n\n**Rum Flip:**\n\n*   2 oz rum\n*   A generous amount of superfine sugar\n*   1 whole egg\n\nCombine all ingredients in a shaker with ice. Shake hard for at least 30 seconds. Strain into a glass and garnish with grated nutmeg.\n\n\n**Royal Bermuda Yacht Club:**\n\n*   2 oz aged rum\n*   1 oz lime juice\n*   ½ oz Cointreau\n*   ½ oz Falernum\n\nCombine all ingredients in a shaker with ice. Shake and strain into a cocktail glass.\n\n\n**Cuba Libre:**\n\n*   2 oz light rum\n*   4 oz Coca-Cola\n*   ½ oz lime juice (or to taste)\n\nCombine all ingredients in a glass with ice.\n"
+    }
+  ]
+}

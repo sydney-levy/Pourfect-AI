@@ -1,0 +1,307 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6F6F6F;
+    --accent-color: #111111;
+    --neutral-color: #FFFFFF;
+    --text-color: #333333;
+    --header-height: 80px;
+}
+
+body {
+    font-family: 'Sofia Pro', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    color: #f47f3d;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header:hover .nav-link,
+.header:hover .logo h1 {
+    color: #f47f3d; 
+}
+
+.header.scrolled {
+    background: rgb(244, 128, 61);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    padding: 0 20px;
+}
+
+/* Navigation Sections */
+.nav-left,
+.nav-right {
+    display: flex;
+    gap: 50px;
+    flex: 1;
+}
+
+.nav-left {
+    justify-content: flex-start;
+    text-align: left;
+    width: 100px;
+}
+
+.nav-right {
+    justify-content: flex-end;
+    text-align: right;
+    width: 220px;
+}
+
+.nav-link {
+    color: #f47f3d;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Sofia Pro', sans-serif;
+    font-weight: 250;
+    text-transform: uppercase !important;
+    transition: color 0.3s ease;
+}
+
+.header.scrolled .nav-link {
+    color: #ffffff;
+}
+
+.nav-link:hover {
+    color: #333333;
+}
+
+.nav-link-active {
+    font-weight: 500; 
+}
+
+/* Logo */
+.logo h1 {
+    font-family: 'Sofia Pro', sans-serif;
+    font-size: 36px;
+    font-weight: 200;
+    color: #f47f3d; 
+    transition: color 0.3s ease;
+}
+
+.header.scrolled .logo h1 {
+    color: #ffffff;
+}
+
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #f47f3d;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled .hamburger span {
+    background: #ffffff;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    background: var(--neutral-color);
+    padding: 20px;
+    padding-bottom:0px;
+    padding-top:5px;
+    position: absolute;
+    width: 100%;
+    top: var(--header-height);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: var(--header-height);
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('/assets/homepage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.btn-hero {
+    text-decoration: none;
+    color: #ffffff;
+    margin-top: 40px; 
+    font-weight: 200;
+    font-size: 22px;
+    font-family: 'Sofia Pro', sans-serif;
+    padding: 10px 20px;
+    background-color: #f47f3d; 
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-hero:hover {
+    background-color: #e55c2a;
+    transform: scale(1.05);
+}
+
+.hero-content {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 200;
+    margin-bottom: 20px;
+    font-family: 'Sofia Pro',sans-serif;
+    color: #FFFFFF;
+}
+
+.hero-subtitle {
+    font-size: 32px !important;
+    color: #FFFFFF;
+    font-family: 'Sofia Pro',sans-serif;
+    font-weight: 200;
+}
+
+/* About Section */
+.about {
+    padding: 80px 0;
+    background: #f9f9f9;
+}
+.founders {
+    padding: 80px 0;
+    background: #f9f9f9;
+}
+
+
+.about h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Sofia Pro', sans-serif;
+    color: #f47f3d;
+    font-size: 36px;
+    font-weight: 200;
+}
+
+.about-text {
+    color: #f47f3d;
+    font-family: 'Sofia Pro', sans-serif;
+    font-weight: 200;
+    font-size: 22px;
+
+}
+
+/* Founders Section */
+.founders {
+    padding: 80px 0;
+    background: #f9f9f9;
+}
+
+.founders h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Sofia Pro', sans-serif;
+    color: #f47f3d;
+    font-size: 36px;
+    font-weight: 200;
+}
+
+.founders-text {
+    color: #f47f3d;
+    font-family: 'Sofia Pro', sans-serif;
+    font-weight: 200;
+    font-size: 22px;
+}
+
+.recipe-text {
+    color: #f47f3d;
+    font-family: 'Sofia Pro', sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.recipe-text ul,
+.recipe-text ol {
+    padding-left: 40px;
+}
+
+.recipe-text li {
+    margin-bottom: 5px;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-left,
+    .nav-right {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .mobile-menu.active {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        /* border-radius: 0 0 10px 10px; */
+    }
+
+    .mobile-link {
+        padding: 15px 0;
+        text-decoration: none;
+        color: #f47f3d;
+        border-bottom: 1px solid #eee;
+        font-family: 'Sofia Pro', sans-serif;
+        font-weight: 250;
+        font-size: 18px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+}

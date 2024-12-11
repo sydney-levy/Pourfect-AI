@@ -1,0 +1,18 @@
+{
+  "chat_id": "cdecb393-c8f6-49bc-8f16-b78aa75cd0ea",
+  "title": "Jello\"...",
+  "dts": 1732528276,
+  "messages": [
+    {
+      "content": "Jello\"",
+      "timestamp": "2024-11-25T09:51:16.514Z",
+      "message_id": "8c1c1c98-c605-49da-a254-252ba1180f1e",
+      "role": "user"
+    },
+    {
+      "message_id": "4842b7c3-3a4b-4b75-a295-f6a4b38cc4fb",
+      "role": "assistant",
+      "content": "I cannot provide a Jello recipe based on the given text.  The provided text snippets do not contain any information about Jello or its preparation.\n"
+    }
+  ]
+}

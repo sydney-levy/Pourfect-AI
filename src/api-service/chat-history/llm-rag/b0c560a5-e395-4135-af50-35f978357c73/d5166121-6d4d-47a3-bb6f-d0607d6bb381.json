@@ -1,0 +1,29 @@
+{
+  "chat_id": "d5166121-6d4d-47a3-bb6f-d0607d6bb381",
+  "title": "Hi!...",
+  "dts": 1733350970,
+  "messages": [
+    {
+      "content": "Hi!",
+      "timestamp": "2024-12-04T22:22:43.419Z",
+      "message_id": "04306a43-9566-4668-91a3-74ef020db9e5",
+      "role": "user"
+    },
+    {
+      "message_id": "c9accd59-4535-4ffe-b14f-fb94bc2ded54",
+      "role": "assistant",
+      "content": "Hello!  How may I assist you with your cocktail needs today?\n"
+    },
+    {
+      "content": "I want a vodka cocktail",
+      "timestamp": "2024-12-04T22:22:50.864Z",
+      "message_id": "7b3efb30-40b1-460e-86c8-199d94d424dd",
+      "role": "user"
+    },
+    {
+      "message_id": "1cdc349a-931c-49db-8076-84adb76d549b",
+      "role": "assistant",
+      "content": "Here's a refreshing vodka cocktail recipe:\n\n**Cranberry Rosemary Vodka Spritzer**\n\n*   1.5 oz Vodka\n*   4 oz Cranberry Juice\n*   2 oz Sparkling Water\n*   1 Sprig Fresh Rosemary\n*   Cranberries for garnish\n\nMuddle the rosemary sprig gently in a shaker. Add vodka and cranberry juice. Fill with ice and shake well. Strain into a chilled wine glass filled with ice. Top with sparkling water. Garnish with fresh cranberries.\n"
+    }
+  ]
+}

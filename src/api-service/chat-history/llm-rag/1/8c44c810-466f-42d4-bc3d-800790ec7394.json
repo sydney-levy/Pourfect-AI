@@ -1,0 +1,17 @@
+{
+  "chat_id": "8c44c810-466f-42d4-bc3d-800790ec7394",
+  "title": "hi...",
+  "dts": 1733350945,
+  "messages": [
+    {
+      "content": "hi",
+      "message_id": "9a081ff3-e4a7-4be2-a451-de1bf3575d9a",
+      "role": "user"
+    },
+    {
+      "message_id": "dba1bde0-41e7-476a-9fb9-ccf362a585b6",
+      "role": "assistant",
+      "content": "Hello!  How may I assist you with your cocktail needs today?\n"
+    }
+  ]
+}

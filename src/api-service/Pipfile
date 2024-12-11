@@ -1,0 +1,26 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+flake8 = "*"
+
+[packages]
+user-agent = "*"
+requests = "*"
+google-cloud-storage = "*"
+google-generativeai = "*"
+google-cloud-aiplatform = "*"
+pandas = "*"
+uvicorn = "*"
+fastapi = "*"
+python-multipart = "*"
+pillow = "*"
+chromadb = "==0.5.7"
+vertexai = "*"
+
+[requires]
+python_version = "3.12"
