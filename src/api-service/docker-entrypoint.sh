@@ -2,10 +2,7 @@
 
 echo "Container is running!!!"
 
-# Activate the virtual environment
-source /home/app/.local/share/virtualenvs/app-4PlAip0Q/bin/activate
-
-# Define Uvicorn commands
+# this will run the api/service.py file with the instantiated app FastAPI
 uvicorn_server() {
     uvicorn api.service:app --host 0.0.0.0 --port 9000 --log-level debug --reload --reload-dir api/ "$@"
 }
@@ -25,7 +22,7 @@ The following commands are available:
 "
 
 if [ "${DEV}" = 1 ]; then
-  uvicorn_server
+  pipenv shell
 else
   uvicorn_server_production
 fi

@@ -15,8 +15,9 @@ GENERATIVE_MODEL = (
     "projects/pourfectai-aida/locations/us-central1/endpoints/"
     "8669025761920811008"
 )
-CHROMADB_HOST = "pourfect-app-vector-db"
+CHROMADB_HOST = "llm-rag-chromadb"
 CHROMADB_PORT = 8000
+
 
 # Configuration settings for the content generation
 generation_config = {
@@ -27,9 +28,7 @@ generation_config = {
 
 # Initialize the GenerativeModel with specific system instructions
 SYSTEM_INSTRUCTION = (
-    "You are a fun, charming, and witty AI assistant specialized in bartender"
-    "& cocktail knowledge. Your responses are based solely on the information"
-    " provided in the text chunks given to you."
+    "You are an AI assistant specialized in bartender and cocktail knowledge. "
     "Your responses are based solely on the information provided in the text "
     "chunks given to you. Do not use any external knowledge or make "
     "assumptions beyond what is explicitly stated in these chunks.\n\n"

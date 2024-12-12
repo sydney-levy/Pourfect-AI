@@ -1,0 +1,29 @@
+networks:
+  default:
+    name: llm-rag-network
+    external: true
+
+services:
+  llm-rag-cli:
+    image: llm-rag-cli
+    container_name: llm-rag-cli
+    volumes:
+      - ../secrets:/secrets
+      - ../llm-rag:/app
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /secrets/pourfectai-aida-6bad61768044.json
+      GCP_PROJECT: pourfectai-aida
+    depends_on:
+      - chromadb
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: llm-rag-chromadb
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docker-volumes/chromadb:/chroma/chroma
+    environment:
+      IS_PERSISTENT: "TRUE"
+      ANONYMIZED_TELEMETRY: "FALSE"
+      CHROMA_SERVER_CORS_ALLOW_ORIGINS: '["*"]' # Not recommended for production environments.

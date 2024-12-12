@@ -6,13 +6,13 @@ from vertexai.language_models import TextEmbeddingInput, TextEmbeddingModel
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-# Vertex AI and GCP Configuration
+# Vertex AI & GCP Configuration
 gcp_project = "pourfectai-aida"
 bucket_name = "pourfect-ai-bucket"
 folder_path = "raw_data/V1/text_data/"
 local_directory = os.path.join(os.getcwd(), "text_data")
 EMBEDDING_MODEL = "text-embedding-004"
-CHROMADB_HOST = "pourfect-app-vector-db"
+CHROMADB_HOST = "llm-rag-chromadb"
 CHROMADB_PORT = 8000
 
 

@@ -1,10 +1,7 @@
 // chat-main.js
 // const axios = require('axios');
 
-// # const BASE_API_URL = 'http://35.185.56.27:9000';
-const BASE_API_URL = '/api';
-// const BASE_API_URL = 'http://localhost:9000';
-console.log("BASE_API_URL:", BASE_API_URL)
+const BASE_API_URL = 'http://localhost:9000';
 
 function uuid() {
     const newUuid = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -12,7 +9,6 @@ function uuid() {
     )
     return newUuid;
 }
-
 
 // Create an axios instance with base configuration
 const api = axios.create({
@@ -29,47 +25,17 @@ api.interceptors.request.use((config) => {
     return Promise.reject(error);
 });
 
-// DOM Elements
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.querySelector('.mobile-menu');
-const header = document.querySelector('.header');
-
-// Hamburger Menu Toggle
-if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
-}
-
-// Sticky Header
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > lastScroll) {
-        header.classList.add('scroll-down');
-        header.classList.remove('scroll-up');
-    } else {
-        header.classList.add('scroll-up');
-        header.classList.remove('scroll-down');
-    }
-
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
-});
-
-
 const DataService = {
     GetChat: async function (model, chat_id) {
-        const response = await api.get(`/${model}/chats/${chat_id}`);
+        const response = await api.get(BASE_API_URL + "/" + model + "/chats/" + chat_id);
         return response.data;
     },
     StartChatWithLLM: async function (model, message) {
-        const response = await api.post(`/${model}/chats/`, message);
+        const response = await api.post(BASE_API_URL + "/" + model + "/chats/", message);
         return response.data;
     },
     ContinueChatWithLLM: async function (model, chat_id, message) {
-        const response = await api.post(`/${model}/chats/${chat_id}`, message);
+        const response = await api.post(BASE_API_URL + "/" + model + "/chats/" + chat_id, message);
         return response.data;
     },
 };
@@ -89,7 +55,10 @@ class ChatApp {
         this.setupEventListeners();
         this.adjustTextAreaHeight();
         
-;
+
+        document.getElementById('viewSavedResponses').addEventListener('click', () => {
+            this.viewSavedResponses();
+        });
     }
 
     setupEventListeners() {
@@ -149,22 +118,22 @@ class ChatApp {
     async handleSendMessage() {
         const message = this.messageInput.value.trim();
         if (!message) return;
-    
+
         const messageData = {
             content: message,
             timestamp: new Date().toISOString()
         };
-        
+
         this.appendMessage('user', messageData);
 
         // Clear input
         this.messageInput.value = '';
         this.adjustTextAreaHeight();
         this.updateSendButton();
-    
+
         // Show typing indicator
         this.showTypingIndicator();
-    
+
         try {
             let response;
             if (this.currentChatId) {
@@ -182,10 +151,10 @@ class ChatApp {
                 );
                 this.currentChatId = response.chat_id;
             }
-    
+
             // Hide typing indicator
             this.hideTypingIndicator();
-    
+
             // Add assistant response to chat
             this.appendMessage('assistant', {
                 content: response.messages[response.messages.length - 1].content,
@@ -210,54 +179,54 @@ class ChatApp {
     }
 
     appendMessage(role, messageData) {
-        console.log("Appending Message:", { role, messageData });
-    
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${role}`;
-    
-        // Only add the icon for assistant messages
-        if (role === 'assistant') {
-            const iconDiv = document.createElement('div');
-            iconDiv.className = 'message-icon';
-            const icon = document.createElement('i');
-            icon.className = 'fas fa-martini-glass-citrus';
-            icon.style.color = '#e55c2a';
-            iconDiv.appendChild(icon);
-            messageDiv.appendChild(iconDiv);
-        }
-    
-        // Content
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'message-content';
-    
-        if (messageData.content) {
-            const textContent = document.createElement('div');
-            textContent.className = 'text-content';
-            contentDiv.appendChild(textContent);
-    
-            // Progressive Text Rendering for Assistant Messages
-            if (role === 'assistant') {
-                this.typeText(textContent, messageData.content, 5, () => {
-                    // Callback after text is fully rendered
-                    this.addSaveButton(messageDiv, messageData);
-                });
-            } else {
-                textContent.innerHTML = marked.parse(messageData.content);
-            }
-        }
-    
-        if (messageData.timestamp) {
-            const timeSpan = document.createElement('span');
-            timeSpan.className = 'message-time';
-            timeSpan.textContent = this.formatTime(messageData.timestamp);
-            messageDiv.appendChild(timeSpan);
-        }
-    
-        messageDiv.appendChild(contentDiv);
-    
-        this.chatHistory.appendChild(messageDiv);
-        this.chatHistory.scrollTop = this.chatHistory.scrollHeight;
+    console.log(role, messageData);
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${role}`;
+
+    // Only add the icon for assistant messages
+    if (role === 'assistant') {
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'message-icon';
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-martini-glass-citrus';
+        icon.style.color = '#e55c2a';
+        iconDiv.appendChild(icon);
+        messageDiv.appendChild(iconDiv);
     }
+
+    // Content
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+
+    if (messageData.content) {
+        const textContent = document.createElement('div');
+        textContent.className = 'text-content'; 
+        contentDiv.appendChild(textContent);
+
+        // Progressive Text Rendering for Assistant Messages
+        if (role === 'assistant') {
+            this.typeText(textContent, messageData.content, 5, () => {
+                // Callback after text is fully rendered
+                this.addSaveButton(messageDiv, messageData);
+            });
+        } else {
+            textContent.innerHTML = marked.parse(messageData.content);
+        }
+    }
+
+    if (messageData.timestamp) {
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'message-time';
+        timeSpan.textContent = this.formatTime(messageData.timestamp);
+        messageDiv.appendChild(timeSpan);
+    }
+
+    messageDiv.appendChild(contentDiv);
+
+    this.chatHistory.appendChild(messageDiv);
+    this.chatHistory.scrollTop = this.chatHistory.scrollHeight;
+}
 
     saveResponse(response) {
     const savedResponses = JSON.parse(localStorage.getItem('savedResponses')) || [];

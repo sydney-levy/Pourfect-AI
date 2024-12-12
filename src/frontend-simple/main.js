@@ -24,7 +24,7 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scroll-down');
     }
 
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll; // Ensure lastScroll is not negative
 });
 
 
@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.classList.toggle('active');
     });
 
+    renderPodcasts();
 });
 
 // Smooth Scroll for Navigation Links

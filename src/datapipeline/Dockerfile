@@ -1,51 +1,37 @@
-# Use the official Debian-hosted Python image
-FROM python:3.12-slim-bookworm
+# Use the slim variant of Python 3.12 as the base image
+FROM python:3.12-slim
 
-ARG DEBIAN_PACKAGES="build-essential git screen vim"
-
-# Prevent apt from showing prompts
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Python wants UTF-8 locale
-ENV LANG=C.UTF-8
-
-# Tell pipenv where the shell is. This allows us to use "pipenv shell" as a
-# container entry point.
+# Set the environment variables for pipenv and Google credentials
 ENV PYENV_SHELL=/bin/bash
+ENV GOOGLE_APPLICATION_CREDENTIALS=secrets/pourfectai-aida-6bad61768044.json
 
-# Tell Python to disable buffering so we don't lose any logs.
-ENV PYTHONUNBUFFERED=1
-
-# Ensure we have an up to date baseline, install dependencies and
-# create a user so we don't run the app as root
+# Install system dependencies required for building and running the application
 RUN set -ex; \
-    for i in $(seq 1 8); do mkdir -p "/usr/share/man/man${i}"; done && \
     apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends $DEBIAN_PACKAGES && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip install --no-cache-dir --upgrade pip && \
-    pip install pipenv && \
-    useradd -ms /bin/bash app -d /home/app -u 1000 -p "$(openssl passwd -1 Passw0rd)" && \
-    mkdir -p /app && \
-    mkdir -p /persistent && \
-    chown app:app /persistent && \
-    chown app:app /app
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
+# Upgrade pip and install pipenv for managing dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir pipenv
 
-# Switch to the new user
-USER app
+# Set the working directory inside the container
 WORKDIR /app
 
-# Install python packages
-ADD --chown=app:app Pipfile Pipfile.lock /app/
+# Copy Pipfile and Pipfile.lock to the container's working directory
+COPY Pipfile Pipfile.lock /app/
 
+# Install the Python dependencies using pipenv
 RUN pipenv sync
 
-# Add the rest of the source code. This is done last so we don't invalidate all
-# layers when we change a line of code.
-ADD --chown=app:app . /app
+# Copy the rest of the application code into the container
+COPY . /app
 
-# Entry point
-ENTRYPOINT ["/bin/bash","./docker-entrypoint.sh"]
+# Set the entry point to bash, enabling you to run commands inside the container
+ENTRYPOINT ["/bin/bash"]
+
+# Default command is to run "pipenv shell" in a non-interactive mode
+CMD ["-c", "pipenv shell"]

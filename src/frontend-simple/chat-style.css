@@ -34,22 +34,20 @@ body {
 
 /* Hamburger Menu */
 .hamburger {
-    display: block;
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    color:black;
 }
 
 .hamburger span {
     display: block;
     width: 25px;
     height: 3px;
-    background: #f47f3d;
+    background: var(--text-color);
     margin: 5px 0;
     transition: all 0.3s ease;
-    color: black;
 }
 
 
@@ -360,11 +358,5 @@ body {
     30% {
         transform: translateY(-4px);
         opacity: 1;
-    }
-}
-
-@media (min-width: 768px) {
-    .hamburger {
-        display: none;
     }
 }

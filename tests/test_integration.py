@@ -1,49 +1,84 @@
-import unittest
 import requests
 
-BASE_URL = "http://34.23.190.158.sslip.io"
+# Integration tests-- run locally right now
 
-class TestAPIWelcomeMessage(unittest.TestCase):
-    def test_api_welcome_message(self):
-        """
-        Test the /api endpoint to ensure it returns the correct welcome message.
-        """
-        response = requests.get(f"{BASE_URL}/api")
-        self.assertEqual(response.status_code, 200)
+BASE_URL = "http://localhost:9000/llm-rag/chats"
+HEADERS = {
+    "X-Session-ID": "215",
+    "Content-Type": "application/json"
+}
+# Testing if pourfect AI can give a correct mojito recipe
+USER_QUERY = {"content": "give me a mojito recipe"}
+EXPECTED_KEYWORDS = ["rum", "mint", "lime"]
 
-        data = response.json()
-        self.assertIn("message", data)
-        self.assertEqual(data["message"], "Welcome to PourfectAI - where every pour is perfectly yours!")
+# Check to see if the api is accessible
+def test_api_endpoint_accessible():
+    """
+    Test if the API endpoint is accessible.
+    """
+    response = requests.get(BASE_URL, headers=HEADERS)
+    assert response.status_code == 200, f"API endpoint is not accessible: {response.status_code}"
+    print("API endpoint is accessible.")
 
-    def test_chat_functionality(self):
-        """
-        Test the /api/llm-rag/chats endpoint to ensure it responds correctly to a chat message.
-        """
-        url = f"{BASE_URL}/api/llm-rag/chats"
-        headers = {
-            "accept": "application/json",
-            "Content-Type": "application/json",
-            "X-Session-ID": "1"
-        }
-        payload = {
-            "content": "what is the best cocktail?"
-        }
+# POST request is used for sending data to a server -- testing if that works
+def test_post_request_success():
+    """
+    Test if the POST request to the API is successful.
+    """
+    response = requests.post(BASE_URL, json=USER_QUERY, headers=HEADERS)
+    assert response.status_code == 200, f"POST request failed: {response.status_code}"
+    print("POST request is successful.")
 
-        # Send request to api service
-        response = requests.post(url, headers=headers, json=payload)
+# Ensuring Pourfect AI's response is good
+def test_response_structure():
+    """
+    Test if the API response structure is valid.
+    """
+    response = requests.post(BASE_URL, json=USER_QUERY, headers=HEADERS)
+    response_data = response.json()
+    
+    # Validate messages  exists
+    assert "messages" in response_data, "Missing 'messages' in API response"
+    assert isinstance(response_data["messages"], list), "'messages' should be a list"
+    assert len(response_data["messages"]) > 0, "'messages' list is empty"
+    print("API response structure is valid.")
 
-        self.assertEqual(response.status_code, 200, f"Expected status code 200 but got {response.status_code}")
-        data = response.json()
+# Validating that messages response exists
+def test_assistant_message_exists():
+    """
+    Test if the assistant's reply exists in the API response.
+    """
+    response = requests.post(BASE_URL, json=USER_QUERY, headers=HEADERS)
+    response_data = response.json()
+    
+    assistant_message = next(
+        (msg["content"] for msg in response_data["messages"] if msg["role"] == "assistant"),
+        None
+    )
+    assert assistant_message is not None, "No assistant message found in 'messages'"
+    print("Assistant's message exists in the response.")
 
-        # Extract the response
-        assistant_response = next(
-            (message["content"] for message in data.get("messages", []) if message["role"] == "assistant"),
-            None
-        )
+# Making sure it can produce a mojito recipe
+def test_assistant_message_content():
+    """
+    Test if the assistant's message contains expected keywords.
+    """
+    response = requests.post(BASE_URL, json=USER_QUERY, headers=HEADERS)
+    response_data = response.json()
+    
+    assistant_message = next(
+        (msg["content"] for msg in response_data["messages"] if msg["role"] == "assistant"),
+        None
+    )
+    response_text = assistant_message.lower()
+    assert any(keyword in response_text for keyword in EXPECTED_KEYWORDS), \
+        f"Response does not contain expected keywords: {response_text}"
+    print("Assistant's message contains expected keywords.")
 
-        self.assertIsNotNone(assistant_response, "No response from PourfectAI")
-        self.assertGreater(len(assistant_response), 0, "PourfectAI's response content is empty")
-
-
+# Run all the tests
 if __name__ == "__main__":
-    unittest.main()
+    test_api_endpoint_accessible()
+    test_post_request_success()
+    test_response_structure()
+    test_assistant_message_exists()
+    test_assistant_message_content()

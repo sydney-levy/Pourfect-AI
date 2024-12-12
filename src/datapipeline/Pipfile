@@ -23,7 +23,7 @@ langchain = "*"
 langchain-chroma = "*"
 langchain-openai = "*"
 llama-index = "*"
-chromadb = "==0.5.7"
+chromadb = "*"
 vertexai = "*"
 langchain-community = "*"
 

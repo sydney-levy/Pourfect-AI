@@ -34,16 +34,16 @@ body {
     z-index: 1000;
     background: rgba(255, 255, 255, 0.9);
     color: #f47f3d;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
 }
 
 .header:hover .nav-link,
 .header:hover .logo h1 {
-    color: #f47f3d; 
+    color: #f47f3d; /* Turn the links and logo text orange */
 }
 
 .header.scrolled {
-    background: rgb(244, 128, 61);
+    background: rgb(244, 128, 61); /* Keep dark even when scrolled */
 }
 
 .nav-container {
@@ -58,7 +58,7 @@ body {
 .nav-left,
 .nav-right {
     display: flex;
-    gap: 50px;
+    gap: 50px; /* Adjust gap between nav links */
     flex: 1;
 }
 
@@ -85,15 +85,15 @@ body {
 }
 
 .header.scrolled .nav-link {
-    color: #ffffff;
+    color: #ffffff; /* Keep links white when scrolling */
 }
 
 .nav-link:hover {
-    color: #333333;
+    color: #333333; /* Individual link hover */
 }
 
 .nav-link-active {
-    font-weight: 500; 
+    font-weight: 500; /* Bold for the active link */
 }
 
 /* Logo */
@@ -101,12 +101,12 @@ body {
     font-family: 'Sofia Pro', sans-serif;
     font-size: 36px;
     font-weight: 200;
-    color: #f47f3d; 
+    color: #f47f3d; /* Default white text */
     transition: color 0.3s ease;
 }
 
 .header.scrolled .logo h1 {
-    color: #ffffff;
+    color: #ffffff; /* Keep logo text white when scrolling */
 }
 
 
@@ -117,20 +117,15 @@ body {
     border: none;
     cursor: pointer;
     padding: 10px;
-
 }
 
 .hamburger span {
     display: block;
     width: 25px;
     height: 3px;
-    background: #f47f3d;
+    background: var(--text-color);
     margin: 5px 0;
     transition: all 0.3s ease;
-}
-
-.header.scrolled .hamburger span {
-    background: #ffffff;
 }
 
 /* Mobile Menu */
@@ -138,8 +133,6 @@ body {
     display: none;
     background: var(--neutral-color);
     padding: 20px;
-    padding-bottom:0px;
-    padding-top:5px;
     position: absolute;
     width: 100%;
     top: var(--header-height);
@@ -163,20 +156,20 @@ body {
 .btn-hero {
     text-decoration: none;
     color: #ffffff;
-    margin-top: 40px; 
+    margin-top: 40px; /* Increases space below the subtitle */
     font-weight: 200;
     font-size: 22px;
     font-family: 'Sofia Pro', sans-serif;
     padding: 10px 20px;
-    background-color: #f47f3d; 
-    border-radius: 5px;
-    display: inline-block;
+    background-color: #f47f3d; /* Add a background color */
+    border-radius: 5px; /* Rounded corners */
+    display: inline-block; /* Ensures proper margin and padding behavior */
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-hero:hover {
     background-color: #e55c2a;
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slight scaling effect on hover */
 }
 
 .hero-content {
@@ -185,7 +178,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center; 
+    text-align: center; /* Adds consistent spacing between elements */
 }
 
 .hero-title {
@@ -230,7 +223,6 @@ body {
     font-size: 22px;
 
 }
-
 /* Founders Section */
 .founders {
     padding: 80px 0;
@@ -253,6 +245,7 @@ body {
     font-size: 22px;
 }
 
+/* The recipe text remains shared */
 .recipe-text {
     color: #f47f3d;
     font-family: 'Sofia Pro', sans-serif;
@@ -273,6 +266,8 @@ body {
 }
 
 
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-left,
@@ -287,18 +282,13 @@ body {
     .mobile-menu.active {
         display: flex;
         flex-direction: column;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        /* border-radius: 0 0 10px 10px; */
     }
 
     .mobile-link {
         padding: 15px 0;
         text-decoration: none;
-        color: #f47f3d;
+        color: var(--text-color);
         border-bottom: 1px solid #eee;
-        font-family: 'Sofia Pro', sans-serif;
-        font-weight: 250;
-        font-size: 18px;
     }
 
     .hero-title {

@@ -17,7 +17,6 @@ router = APIRouter()
 chat_manager = ChatHistoryManager(model="llm-rag")
 
 @router.get("/chats")
-@router.get("/chats/")
 async def get_chats(x_session_id: str = Header(None, alias="X-Session-ID"), limit: Optional[int] = None):
     """Get all chats, optionally limited to a specific number"""
     print("x_session_id:", x_session_id)
@@ -33,7 +32,6 @@ async def get_chat(chat_id: str, x_session_id: str = Header(None, alias="X-Sessi
     return chat
 
 @router.post("/chats")
-@router.post("/chats/")
 async def start_chat_with_llm(message: Dict, x_session_id: str = Header(None, alias="X-Session-ID")):
     print("Received message:", message)
     print("Session ID:", x_session_id)

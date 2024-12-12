@@ -15,9 +15,7 @@ RUN set -ex; \
 USER app
 WORKDIR /app
 
-COPY . /app
-
 # Expose port and define entrypoint
-EXPOSE 3000
+EXPOSE 8080
 ENTRYPOINT ["http-server"]
-CMD ["-p", "3000"]
+CMD ["-p", "8080"]

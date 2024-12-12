@@ -10,11 +10,11 @@ export SECRETS_DIR=$(pwd)/../../../secrets/
 export PERSISTENT_DIR=$(pwd)/../../../persistent-folder/
 export GCP_PROJECT="pourfectai-aida" 
 export GCS_BUCKET_NAME="pourfect-ai-bucket"
-export CHROMADB_HOST="pourfect-app-vector-db"
+export CHROMADB_HOST="llm-rag-chromadb"
 export CHROMADB_PORT=8000
 
 # Create the network if we don't have it yet
-docker network inspect pourfect-app-network >/dev/null 2>&1 || docker network create pourfect-app-network
+docker network inspect llm-rag-network >/dev/null 2>&1 || docker network create llm-rag-network
 
 # Build the image based on the Dockerfile
 #docker build -t $IMAGE_NAME -f Dockerfile .
@@ -33,5 +33,5 @@ docker run --rm --name $IMAGE_NAME -ti \
 -e GCS_BUCKET_NAME=$GCS_BUCKET_NAME \
 -e CHROMADB_HOST=$CHROMADB_HOST \
 -e CHROMADB_PORT=$CHROMADB_PORT \
---network pourfect-app-network \
+--network llm-rag-network \
 $IMAGE_NAME
